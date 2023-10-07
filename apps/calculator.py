@@ -7,8 +7,8 @@ import requests
 from yahoo_fin import stock_info as si
 
 import yfinance as yf
-from fbprophet import Prophet
-from fbprophet.plot import plot_plotly
+from prophet import Prophet
+from prophet.plot import plot_plotly
 from plotly import graph_objs as go
 from .fetch_news import retrieve_news
 from PIL import Image
@@ -58,7 +58,7 @@ def app():
         comparetitle = Image.open('Images/comparetitle.png')
         st.image(comparetitle, caption=' ')
 
-        cpi1, cpi2 = st.beta_columns([1,1])
+        cpi1, cpi2 = st.columns([1,1])
         with cpi1:
             option = st.selectbox("    ",('Zerodha.','Upstox.','Groww.'))
 
@@ -320,7 +320,7 @@ def app():
 
         option = st.selectbox("  ",('Select','Zerodha','Upstox','Groww'))
         
-        kpi01, kpi02, kpi03, kpi04 = st.beta_columns([1,1,1,1])
+        kpi01, kpi02, kpi03, kpi04 = st.columns([1,1,1,1])
 
 
                 
@@ -340,7 +340,7 @@ def app():
         
         if option == 'Zerodha':
             st.markdown("<hr/>", unsafe_allow_html=True)
-            kpi001, kpi002, kpi003 = st.beta_columns([1,2,1])
+            kpi001, kpi002, kpi003 = st.columns([1,2,1])
             with kpi001:
                  st.markdown(" ")
 
@@ -369,7 +369,7 @@ def app():
             
 
             st.markdown("<hr/>", unsafe_allow_html=True)
-            kpi01, kpi02, kpi03 = st.beta_columns([1,2,1])
+            kpi01, kpi02, kpi03 = st.columns([1,2,1])
             with kpi01:
                  st.image(stock.info['logo_url'],use_column_width='auto')
 
@@ -387,7 +387,7 @@ def app():
 
 
 
-            kpi011, kpi022, kpi033 = st.beta_columns([1,2,1])
+            kpi011, kpi022, kpi033 = st.columns([1,2,1])
             with kpi011:
                  st.markdown(" ")
 
@@ -405,7 +405,7 @@ def app():
 
            
 
-            kpi011, kpi022, kpi033 = st.beta_columns([1,2,1])
+            kpi011, kpi022, kpi033 = st.columns([1,2,1])
             with kpi011:
                  st.markdown(" ")
 
@@ -420,7 +420,7 @@ def app():
 
            
             
-            kpi0111, kpi0222, kpi0333 = st.beta_columns([1,2,1])
+            kpi0111, kpi0222, kpi0333 = st.columns([1,2,1])
             with kpi011:
                  st.markdown(" ")
 
@@ -482,7 +482,7 @@ def app():
             
             ### top row 
             st.markdown("<hr/>", unsafe_allow_html=True)
-            first_kpi, second_kpi, third_kpi, fourth_kpi  = st.beta_columns(4)
+            first_kpi, second_kpi, third_kpi, fourth_kpi  = st.columns(4)
 
             with first_kpi:   ##   Intraday equity   
                 
@@ -747,7 +747,7 @@ def app():
 
         if option == 'Upstox':
             st.markdown("<hr/>", unsafe_allow_html=True)
-            kpi001, kpi002, kpi003 = st.beta_columns([1,2,1])
+            kpi001, kpi002, kpi003 = st.columns([1,2,1])
             with kpi001:
                  st.markdown(" ")
 
@@ -776,7 +776,7 @@ def app():
             
 
             st.markdown("<hr/>", unsafe_allow_html=True)
-            kpi01, kpi02, kpi03 = st.beta_columns([1,2,1])
+            kpi01, kpi02, kpi03 = st.columns([1,2,1])
             with kpi01:
                  st.image(stock.info['logo_url'],use_column_width='auto')
 
@@ -794,7 +794,7 @@ def app():
 
 
 
-            kpi011, kpi022, kpi033 = st.beta_columns([1,2,1])
+            kpi011, kpi022, kpi033 = st.columns([1,2,1])
             with kpi011:
                  st.markdown(" ")
 
@@ -812,7 +812,7 @@ def app():
 
            
 
-            kpi011, kpi022, kpi033 = st.beta_columns([1,2,1])
+            kpi011, kpi022, kpi033 = st.columns([1,2,1])
             with kpi011:
                  st.markdown(" ")
 
@@ -827,7 +827,7 @@ def app():
 
            
             
-            kpi0111, kpi0222, kpi0333 = st.beta_columns([1,2,1])
+            kpi0111, kpi0222, kpi0333 = st.columns([1,2,1])
             with kpi011:
                  st.markdown(" ")
 
@@ -888,7 +888,7 @@ def app():
             
             ### top row 
             st.markdown("<hr/>", unsafe_allow_html=True)
-            first_kpi, second_kpi, third_kpi, fourth_kpi  = st.beta_columns(4)
+            first_kpi, second_kpi, third_kpi, fourth_kpi  = st.columns(4)
 
             with first_kpi:   ##   Intraday equity   
                 
@@ -1140,7 +1140,7 @@ def app():
 
         if option == 'Groww':
             st.markdown("<hr/>", unsafe_allow_html=True)
-            kpi001, kpi002, kpi003 = st.beta_columns([1,2,1])
+            kpi001, kpi002, kpi003 = st.columns([1,2,1])
             with kpi001:
                  st.markdown(" ")
 
@@ -1169,7 +1169,7 @@ def app():
             
 
             st.markdown("<hr/>", unsafe_allow_html=True)
-            kpi01, kpi02, kpi03 = st.beta_columns([1,2,1])
+            kpi01, kpi02, kpi03 = st.columns([1,2,1])
             with kpi01:
                  st.image(stock.info['logo_url'],use_column_width='auto')
 
@@ -1187,7 +1187,7 @@ def app():
 
 
 
-            kpi011, kpi022, kpi033 = st.beta_columns([1,2,1])
+            kpi011, kpi022, kpi033 = st.columns([1,2,1])
             with kpi011:
                  st.markdown(" ")
 
@@ -1205,7 +1205,7 @@ def app():
 
            
 
-            kpi011, kpi022, kpi033 = st.beta_columns([1,2,1])
+            kpi011, kpi022, kpi033 = st.columns([1,2,1])
             with kpi011:
                  st.markdown(" ")
 
@@ -1220,7 +1220,7 @@ def app():
 
            
             
-            kpi0111, kpi0222, kpi0333 = st.beta_columns([1,2,1])
+            kpi0111, kpi0222, kpi0333 = st.columns([1,2,1])
             with kpi011:
                  st.markdown(" ")
 
@@ -1293,7 +1293,7 @@ def app():
             
             ### top row 
             st.markdown("<hr/>", unsafe_allow_html=True)
-            first_kpi, second_kpi, third_kpi, fourth_kpi  = st.beta_columns(4)
+            first_kpi, second_kpi, third_kpi, fourth_kpi  = st.columns(4)
 
             with first_kpi:   ##   Intraday equity   
                 

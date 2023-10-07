@@ -5,7 +5,7 @@ import pandas as pd
 from datetime import date
 import yfinance as yf
 from yahoo_fin import stock_info as si
-from fbprophet.plot import plot_plotly
+from prophet.plot import plot_plotly
 from plotly import graph_objs as go
 from .fetch_news import retrieve_news
 from PIL import Image
@@ -33,15 +33,15 @@ def app():
 	st.markdown("<hr/>", unsafe_allow_html=True)
 	
 
-	stock = yf.Ticker("^IXIC")
+	stock = yf.Ticker("MSFT`")
 	#st.write(stock.info)
 	def load_data(component):
 		component_data=si.get_quote_data(component)
 		return component_data
 
-	NASDAQ_data = load_data("^IXIC")
-	NIFTY50_data = load_data("^NSEI")
-	BSESENSEX_data = load_data("^BSESN")
+	# NASDAQ_data = load_data("^IXIC")
+	# NIFTY50_data = load_data("^NSEI")
+	# BSESENSEX_data = load_data("^BSESN")
 	
 	
 
@@ -52,7 +52,6 @@ def app():
 	#st.write(NASDAQ_data)
 
 	def write_data(component):
-
 
 		shortname = (str(component['shortName']))
 		marketstate = component['marketState']
@@ -80,15 +79,15 @@ def app():
 			st.markdown(f"<h style='text-align: center; font-size:40px; color: red; '>**{regularmarketprice}**</h>", unsafe_allow_html=True)
 			st.markdown(f"<h style='text-align: center; font-size:20px; color: red; '>**{marketstate} : {regularMarketChange} / {Changepercent}%**  </h>", unsafe_allow_html=True)  
 
-	col1, col2, col3 = st.beta_columns(3)
+	col1, col2, col3 = st.columns(3)
 
 
-	with col1: 
-		write_data(NASDAQ_data)
-	with col2:
-		write_data(NIFTY50_data)
-	with col3:
-		write_data(BSESENSEX_data)
+	# with col1: 
+	# 	write_data(NASDAQ_data)
+	# with col2:
+	# 	write_data(NIFTY50_data)
+	# with col3:
+	# 	write_data(BSESENSEX_data)
 
 	
 
@@ -102,7 +101,7 @@ def app():
 
 
 
-	gainer_col, loser_col, active_col = st.beta_columns([1,1,1])
+	gainer_col, loser_col, active_col = st.columns([1,1,1])
 	st.markdown("<hr/>", unsafe_allow_html=True)
 	
 	gainers=si.get_day_gainers().head(10)

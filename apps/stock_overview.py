@@ -3,9 +3,8 @@ from datetime import date
 import requests
 from yahoo_fin import stock_info as si
 
-
 import yfinance as yf
-from fbprophet.plot import plot_plotly
+from prophet.plot import plot_plotly
 from plotly import graph_objs as go
 from .fetch_news import retrieve_news
 from PIL import Image
@@ -42,7 +41,7 @@ def app():
     stock_name = selected_stock
     longname = stock.info['longName']
     exchange = stock.info['exchange']
-    timezone = stock.info['exchangeTimezoneName']
+    timezone = "timezoneName"
     currency = stock.info['currency']
     current_price = str(round(si.get_live_price(selected_stock),2))
     open_today = str(round(stock.info['open'],2))
@@ -57,13 +56,15 @@ def app():
     
     st.markdown("<hr/>", unsafe_allow_html=True)
 
-    kpi01, kpi02, kpi03, kpi04 = st.beta_columns([1,1,1,1])
+    kpi01, kpi02, kpi03, kpi04 = st.columns([1,1,1,1])
 
-
+    print(stock.info)
     with kpi01:
-
-        ##st.markdown(f"<h style='text-align: center; font-size:15px; '>**EXCHANGE : {exchange}: {stock_name}  |  {timezone}**</h>", unsafe_allow_html=True)
-        st.image(stock.info['logo_url'],use_column_width='auto')#st.markdown("![Alt Text]("+stock.info['logo_url']+")")
+        st.markdown("**INDUSTRY**")
+        st.markdown(f"<h style='text-align: center; font-size:40px; color:#0078ff; '>**{stock.info['industry']}**</h>", unsafe_allow_html=True)
+        
+        #st.markdown(f"<h style='text-align: center; font-size:15px; '>**EXCHANGE : {exchange}: {stock_name}  |  {timezone}**</h>", unsafe_allow_html=True)
+        # st.image(stock.info['logo_url'],use_column_width='auto')#st.markdown("![Alt Text]("+stock.info['logo_url']+")")
 
 
     with kpi02:
@@ -87,11 +88,11 @@ def app():
 
     st.markdown("&nbsp ")
     def plot_raw_data():
-    	fig = go.Figure()
-    	fig.add_trace(go.Scatter(x =data['Date'], y=data['Open'], name='stock_open'))
-    	fig.add_trace(go.Scatter(x =data['Date'], y=data['Close'], name='stock_close'))
-    	fig.layout.update(title_text ="Time series data", xaxis_rangeslider_visible = True, font=dict(family="Sans serif",size=18),margin=dict(l=10, r=10, t=40, b=30))
-    	st.plotly_chart(fig, use_container_width=True)
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(x =data['Date'], y=data['Open'], name='stock_open'))
+        fig.add_trace(go.Scatter(x =data['Date'], y=data['Close'], name='stock_close'))
+        fig.layout.update(title_text ="Time series data", xaxis_rangeslider_visible = True, font=dict(family="Sans serif",size=18),margin=dict(l=10, r=10, t=40, b=30))
+        st.plotly_chart(fig, use_container_width=True)
 
 		
  
@@ -114,7 +115,7 @@ def app():
     st.image(pricesummery, caption=' ')
     ##st.markdown(f"<h style='text-align: center; font-size:40px; '>Price Summary</h>", unsafe_allow_html=True)
 
-    kpi1, kpi2, kpi3, kpi4 = st.beta_columns(4)
+    kpi1, kpi2, kpi3, kpi4 = st.columns(4)
     with kpi1:
         st.markdown("**TODAY'S HIGH**")
         number1 = str(round(stock.info['regularMarketDayHigh'],2)) 
@@ -141,7 +142,7 @@ def app():
     st.image(companyesssential, caption=' ')
     ##st.markdown(f"<h style='text-align: center; font-size:40px; '>Company Essentials</h>", unsafe_allow_html=True)
 
-    kpi5, kpi6, kpi7, kpi8, kpi9, kpi10 = st.beta_columns(6)
+    kpi5, kpi6, kpi7, kpi8, kpi9, kpi10 = st.columns(6)
     with kpi5:
         st.markdown("**P/E RATIO**")
         number5 = (str(stock.info['pegRatio'])) 
@@ -195,7 +196,7 @@ def app():
     st.image(companysummery, caption=' ')
     ##st.markdown(f"<h style='text-align: center; font-size:40px; '>Company Summary</h>", unsafe_allow_html=True)
 
-    kpi11, kpi12, kpi13, kpi14 = st.beta_columns(4)
+    kpi11, kpi12, kpi13, kpi14 = st.columns(4)
     with kpi11:
         st.markdown("**MARKET CAP**")
         try:

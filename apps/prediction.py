@@ -3,8 +3,8 @@ from datetime import date
 import requests
 
 import yfinance as yf
-from fbprophet import Prophet
-from fbprophet.plot import plot_plotly
+from prophet import Prophet
+from prophet.plot import plot_plotly
 from plotly import graph_objs as go
 from .fetch_news import retrieve_news
 
@@ -42,18 +42,18 @@ def app():
 	longname = stock.info['longName']
 	stock_name = selected_stock
 	exchange = stock.info['exchange']
-	timezone = stock.info['exchangeTimezoneName']
+	timezone = 'Timezone'
 
 	
 	st.markdown("<hr/>", unsafe_allow_html=True)
 
 	
-	col1, col2 = st.beta_columns([1,3])
+	col1, col2 = st.columns([1,3])
 
 
 	with col1:
 		st.markdown("&nbsp")
-		st.image(stock.info['logo_url'],use_column_width='auto')#st.markdown("![Alt Text]("+stock.info['logo_url']+")")
+		# st.image(stock.info['logo_url'],use_column_width='auto')#st.markdown("![Alt Text]("+stock.info['logo_url']+")")
 	
 	with col2:
 		st.markdown("&nbsp")
